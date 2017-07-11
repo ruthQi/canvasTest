@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Canvas 树叶</title>
+   <style type="text/css">
+      canvas{
+         border: 1px solid #eee;
+      }
+   </style>
+</head>
+<body>
+   <canvas id="leafCanvas" width="600" height="600"></canvas>
+   <script type="text/javascript">
+      var canvas = document.getElementById('leafCanvas');
+      var ctx = canvas.getContext('2d');
+      var imgArr = [];
+      function createImg(){
+         setInterval(function(){
+            var y = Math.random() * 5;
+            for(var i = 0; i < 1; i++){
+               var img = new imgObj();
+               imgArr.push(img);
+            }
+         }, 1000)
+      }
+     /* function init(){
+         var x = 0;
+         var y = 0;
+         for(var i=0;i<imgArr.length; i++){
+            x = Math.random() * 100;
+            y = Math.random() * 100;
+            console.log(imgArr[i])
+            var imgObj = {
+               img: imgArr[i],
+               x: x, 
+               y: y
+            }
+            draw(imgObj)
+         }
+         //requestAnimationFrame(draw);
+      }*/
+      function update(){
+         ctx.clearRect(0,0, canvas.width, canvas.height);
+         for (i = imgArr.length - 1; i >= 0; i--) {
+             var img = imgArr[i];
+             img.draw();
+             img.move();
+         }
+         requestAnimationFrame(update);
+      }
+      /*function draw(){
+         ctx.clearRect(0,0, canvas.width, canvas.height);
+         ctx.drawImage(obj.img, obj.x, obj.y);
+         obj.x += 1;
+         obj.y += 2;
+         requestAnimationFrame(draw);
+      }*/
+      function imgObj() {
+         this.init();
+      }
+      imgObj.prototype = {
+         init: function(){
+            this.img = new Image();
+            this.img.src = 'images/pages/ios.png';
+            this.x = Math.random() * 600;
+            this.y = 600;
+         },
+         draw: function(){
+            if(this.y > 400){
+               ctx.drawImage(this.img, this.x, this.y);
+            }
+            
+         },
+         move: function(){
+            this.x += 0.65;
+            this.y -= 1;
+         }
+      }
+      createImg();
+      requestAnimationFrame(update);
+   </script>
+</body>
+</html>

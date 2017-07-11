@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Canvas Test</title>
+</head>
+<body>
+   <canvas id="canvas" width="600" height="300"></canvas>
+   <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var raf;
+      var running = false;
+      var ball = {
+         x: 100,
+         y: 100,
+         vx: 5,
+         vy: 1,
+         radius: 25,
+         color: '#00ffff',
+         draw: function(){
+            //ctx.translate(100, 100);
+            //渐变
+            var lineargradient = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+            lineargradient.addColorStop(0,'white');
+            lineargradient.addColorStop(1,'black');
+            //beginPath():新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径
+            ctx.beginPath();
+            //arc(x, y, radius, startAngle, endAngle, anticlockwise)
+            //画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            //closePath()闭合路径之后图形绘制命令又重新指向到上下文中。
+            ctx.closePath();
+            //fillStyle: 设置图形的填充颜色。
+            ctx.fillStyle = lineargradient;//this.color;
+
+            ctx.fillRect(200, 200, 50, 50);
+            
+            //fill():通过填充路径的内容区域生成实心的图形
+            ctx.fill();
+         }
+      }
+      function clear(){
+         ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+         //fillRect()绘制一个填充的矩形
+         ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      function draw(){
+         //clearRect()清除指定矩形区域，让清除部分完全透明
+         //ctx.clearRect(0,0, canvas.width, canvas.height);
+         //长尾效果
+         clear();
+         ball.draw();
+         //ball.vy *= 0.99;
+         //ball.vy += 0.25;
+         if((ball.y + ball.vy) > canvas.height || (ball.y + ball.vy) < 0){
+            ball.vy = -ball.vy;
+         }
+         if((ball.x + ball.vx) > canvas.width || (ball.x + ball.vx) < 0){
+            ball.vx = -ball.vx;
+         }
+         ball.y += ball.vy;
+         ball.x += ball.vx;
+         raf = window.requestAnimationFrame(draw);
+      }
+      canvas.addEventListener('mousemove', function(e){
+         if(!running){
+            clear();
+            ball.x = e.clientX;
+            ball.y = e.clientY;
+            ball.draw();
+         }
+         
+      })
+      canvas.addEventListener('mouseout', function(e){
+         window.cancelAnimationFrame(raf);
+         running = false;
+      });
+      canvas.addEventListener('click', function(e){
+         if(!running){
+            raf = window.requestAnimationFrame(draw);
+            running = true;
+         }
+      })
+      ball.draw();
+   </script>
+</body>
+</html>

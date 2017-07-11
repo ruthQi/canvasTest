@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>粒子实现</title>
+   <style type="text/css">
+
+   </style>
+</head>
+<body>
+   <!--注：1. canvas默认宽高为：300,150; 2. 在元素中设置的width和height与在style中设置的不同;3. 默认颜色为黑色-->
+   <canvas id="canvas" width="2000" height="500"></canvas>
+   <script type="text/javascript">
+   var canvas = document.getElementById('canvas');
+   //var ctx = canvas.getContext('2d');//'2d':d必须是小写；只能是2d,没有3d
+   var MAX_PARTICLES = 200;
+   var COLOURS = ['#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423'];
+   var particles = [];
+   var pool = [];
+   var delayTime = 0;
+   function random(e, n) {
+      return e && "number" == typeof e.length && e.length ? e[Math.floor(Math.random() * e.length)] : ("number" != typeof n && (n = e || 1, e = 0), e + Math.random() * (n - e))
+   }
+   function spawn(x, y){
+      if (particles.length >= MAX_PARTICLES)
+         pool.push(particles.shift());
+
+      var particle = pool.length ? pool.pop() : new Particle();
+      particle.init(x, y, random(5, 40));
+      particle.wander = random(0.5, 2.0);
+      particle.color = random(COLOURS);
+      particle.drag = random(0.9, 0.99);
+
+      var theta = random(Math.PI * 2);
+      var force = random(2, 8);
+
+      particle.vx = Math.sin(theta) * force;
+      particle.vy = Math.cos(theta) * force;
+      //particle.draw(canvas);
+      particles.push(particle);
+   }
+   canvas.addEventListener('mouseenter', function(e){
+      clearTimeout(delayTime);
+      var x = e.clientX;
+      var y = e.clientY;
+      var max = random(1, 4), j;
+      for (j = 0; j < max; j++) spawn(x, y);
+      requestAnimationFrame(update);
+   })
+   canvas.addEventListener('mousemove', function(e){
+      clearTimeout(delayTime);
+      var x = e.clientX;
+      var y = e.clientY;
+      var max = random(1, 4), j;
+      for (j = 0; j < max; j++) spawn(x, y);
+      delayTime = setTimeout(function(){
+         requestAnimationFrame(update);
+      }, 2000)
+   })
+   function clear(){
+      canvas.width = canvas.width;
+   }
+   function update(){
+      clearTimeout(delayTime);
+      var i, particle;
+      clear();
+      for (i = particles.length - 1; i >= 0; i--) {
+
+          particle = particles[i];
+          particle.draw(canvas);
+         if (particle.alive) {
+            particle.move();
+         }else pool.push(particles.splice(i, 1)[0]);
+      }
+      requestAnimationFrame(update);
+      
+   }
+   function Particle(x, y, radius) {
+      this.init(x, y, radius);
+   }
+
+   Particle.prototype = {
+
+      init: function (x, y, radius) {
+          this.alive = true;
+
+          this.radius = radius || 10;
+          this.wander = 0.15;
+          this.theta = random(Math.PI * 2);
+          this.drag = 0.92;
+          this.color = '#fff';
+
+          this.x = x || 0.0;
+          this.y = y || 0.0;
+
+          this.vx = 0.0;
+          this.vy = 0.0;
+      },
+
+      move: function () {
+
+          this.x += this.vx;
+          this.y += this.vy;
+
+          this.vx *= this.drag;
+          this.vy *= this.drag;
+
+          this.theta += random(-0.5, 0.5) * this.wander;
+          this.vx += Math.sin(this.theta) * 0.1;
+          this.vy += Math.cos(this.theta) * 0.1;
+
+          this.radius *= 0.96;
+          this.alive = this.radius > 0.5;
+      },
+
+      draw: function (canvas) {
+         var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+      }
+   };
+   function setBackgroundColor(){
+
+      var colors = [[62, 35, 255], [60, 255, 60], [255, 35, 98], [45, 175, 230], [255, 0, 255], [255, 128, 0]];
+      var step = 0;
+      var colorIndices = [0, 1, 2, 3];
+      var gradientSpeed = 0.002;
+      if(canvas){
+         setInterval(function(){
+            var c0_0 = colors[colorIndices[0]];
+            var c0_1 = colors[colorIndices[1]];
+            var c1_0 = colors[colorIndices[2]];
+            var c1_1 = colors[colorIndices[3]];
+            var istep = 1 - step;
+            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+            var color1 = 'rgb('+ r1 +','+ g1 +','+ b1 +')';
+            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+            var color2 = 'rgb('+ r2 +','+ g2 +','+ b2 +')';
+            canvas.style.background = "linear-gradient(to left,  "+ color1 + " 0%, " + color2 + " 100%)";
+            step += gradientSpeed;
+            if(step >= 1){
+               step %= 1;
+               colorIndices[0] = colorIndices[1];
+               colorIndices[2] = colorIndices[3];
+               colorIndices[1] = ( colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+               colorIndices[3] = ( colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+            }
+         }, 10);
+      }
+   }
+   setBackgroundColor();
+   </script>
+</body>
+</html>
