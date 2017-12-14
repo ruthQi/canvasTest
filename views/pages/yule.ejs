@@ -3,6 +3,14 @@
 <head>
    <title>测试动画</title>
    <meta content="charset=utf-8"/>
+   <style>
+      .collection .item{
+         display: block;
+         position: absolute;
+         left: 0px;
+         top: 0px;
+      }
+   </style>
 </head>
 <body>
    <div class="collection" style="display:none">
@@ -62,6 +70,8 @@
       function initCanvas() {
          var canvas = document.getElementById('app');
          var w = window.innerWidth, h = window.innerHeight;
+         /*console.log(w)
+         console.log(h)*/
          w > h && (w = 725, h = 1206, $("body").css({
             width: "725px",
             height: "1206px",
@@ -75,7 +85,7 @@
          canvas.setAttribute("width", w), canvas.setAttribute("height", h)
       }
       function bindEvent(){
-         $("#start").on("click", function() {
+         $("#start").on("touchstart", function() {
             function e() {
                var a = (new Date).getTime();
                if (index + 1 != imgList.length) {
@@ -90,21 +100,27 @@
          })
       }
       function draw(){
-         if (index + 1 <= this.imgList.length) {
+         console.log(radio)
+         if(!imgList[index + 1]){
+            return;
+         }
+         if (index + 1 != this.imgList.length) {
             if (radio < imgList[index + 1].areaW / imgList[index + 1].imgW ){
+               console.log('-----------------------')
                index++; 
                radio = 1;
             }
+            //console.log(index)
             drawImgOversize(domList[index+1],imgList[index+1].imgW,imgList[index+1].imgH,imgList[index+1].areaW,imgList[index+1].areaH, imgList[index+1].areaL, imgList[index+1].areaT, radio);
-            drawImgMinisize(domList[index], imgList[index].imgW, imgList[index].imgH, imgList[index].imgW, imgList[index].imgH, imgList[index].areaW, imgList[index].areaH, imgList[index].areaL, imgList[index].areaT, this.radio)
+            drawImgMinisize(domList[index], imgList[index].imgW, imgList[index].imgH, imgList[index+1].imgW, imgList[index+1].imgH, imgList[index+1].areaW, imgList[index+1].areaH, imgList[index+1].areaL, imgList[index+1].areaT, radio)
          }
       }
       function drawImgOversize(i, e, t, a, n, m, s, g) {
-         ctx.drawImage(i, m - (a / g - a) * (m / (e - a)), s - (n / g - n) * (s / (t - n)), a / g, n / g, 0, 0, 750, 1206)
+         ctx.drawImage(i, m - (a / g - a) * (m / (e - a)), s - (n / g - n) * (s / (t - n)), a / g, n / g, 0, 0, 750, 1206);
       }
       function drawImgMinisize(i, e, t, a, n, m, s, g, r, o) {
-      ctx.drawImage(i, 0, 0, e, t, (m / o - m) * (g / (a - m)) * o * 750 / m, (s / o - s) * (r / (n - s)) * o * 1206 / s, 750 * o, 1206 * o)
-   }
+         ctx.drawImage(i, 0, 0, e, t, (m / o - m) * (g / (a - m)) * o * 750 / m, (s / o - s) * (r / (n - s)) * o * 1206 / s, 750 * o, 1206 * o);
+      }
       init();
    </script>
 </body>
