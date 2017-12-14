@@ -116,6 +116,14 @@
          }
       }
       function drawImgOversize(i, e, t, a, n, m, s, g) {
+         /*drawImage(img,sx,sy,swidth,sheight,x,y,width,height)
+            img:规定要使用的图像；
+            sx:开始剪切的x坐标的位置；
+            sy:开始剪切的y坐标的位置；
+            swidth:被剪切图像的宽度；
+            sheight:呗剪切图像的高度；
+            x:画布上放置图像的x坐标位置；
+            y:画布上放置图像的y坐标位置*/
          ctx.drawImage(i, m - (a / g - a) * (m / (e - a)), s - (n / g - n) * (s / (t - n)), a / g, n / g, 0, 0, 750, 1206);
       }
       function drawImgMinisize(i, e, t, a, n, m, s, g, r, o) {
