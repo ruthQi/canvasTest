@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>测试动画</title>
+   <meta content="charset=utf-8"/>
+   <style>
+      .collection .item{
+         display: block;
+         position: absolute;
+         left: 0px;
+         top: 0px;
+      }
+      .gif{
+         position: absolute;
+         left: 0;
+         top: 0;
+         right: 0;
+         z-index: 99;
+         height: 1206px;
+         pointer-events: none;
+
+      }
+      .gif.p1{
+         background: url('http://static.ws.126.net/f2e/ent/ent_painting2017/images/p1n.jpg') no-repeat;
+         background-size: contain;
+      }
+      .gif.p1 .animation {
+         left: 84px;
+         top: 320px;
+         width: 565px;
+         height: 532px;
+         background: url('http://static.ws.126.net/f2e/ent/ent_painting2017/images/B1_v2.png') no-repeat;
+         animation: animation1 3s steps(1) infinite;
+      }
+      .gif .animation {
+         position: absolute;
+      }
+      @keyframes animation1{
+         0%, 100% {
+             background-position: 0 0;
+         }
+         2.08333% {
+             background-position: 0 -532px;
+         }
+         4.16667% {
+             background-position: 0 -1064px;
+         }
+
+         6.25% {
+             background-position: 0 -1596px;
+         }
+
+         8.33333% {
+             background-position: 0 -2128px;
+         }
+
+         10.4167% {
+             background-position: 0 -2660px;
+         }
+
+         12.5% {
+             background-position: 0 -3192px;
+         }
+
+         14.5833% {
+             background-position: 0 -3724px;
+         }
+
+         16.6667% {
+             background-position: 0 -4256px;
+         }
+         
+         18.75% {
+             background-position: 0 -4788px;
+         }
+         
+         20.8333% {
+             background-position: 0 -5320px;
+         }
+         
+         22.9167% {
+             background-position: 0 -5852px;
+         }
+         
+         25% {
+             background-position: 0 -6384px;
+         }
+         
+         27.0833% {
+             background-position: 0 -6916px;
+         }
+         
+         29.1667% {
+             background-position: 0 -7448px;
+         }
+         
+         31.25% {
+             background-position: 0 -7980px;
+         }
+         
+         33.3333% {
+             background-position: 0 -8512px;
+         }
+         
+         35.4167% {
+             background-position: 0 -9044px;
+         }
+         
+         37.5% {
+             background-position: 0 -9576px;
+         }
+         
+         39.5833% {
+             background-position: 0 -10108px;
+         }
+         
+         41.6667% {
+             background-position: 0 -10640px;
+         }
+         
+         43.75% {
+             background-position: 0 -11172px;
+         }
+         
+         45.8333% {
+             background-position: 0 -11704px;
+         }
+         
+         47.9167% {
+             background-position: 0 -12236px;
+         }
+         
+         50% {
+             background-position: 0 -12768px;
+         }
+         
+         52.0833% {
+             background-position: 0 -13300px;
+         }
+         
+         54.1667% {
+             background-position: 0 -13832px;
+         }
+         
+         56.25% {
+             background-position: 0 -14364px;
+         }
+         
+         58.3333% {
+             background-position: 0 -14896px;
+         }
+         
+         60.4167% {
+             background-position: 0 -15428px;
+         }
+         
+         62.5% {
+             background-position: 0 -15960px;
+         }
+         
+         64.5833% {
+             background-position: 0 -16492px;
+         }
+         
+         66.6667% {
+             background-position: 0 -17024px;
+         }
+         
+         68.75% {
+             background-position: 0 -17556px;
+         }
+         
+         70.8333% {
+             background-position: 0 -18088px;
+         }
+         
+         72.9167% {
+             background-position: 0 -18620px;
+         }
+         
+         75% {
+             background-position: 0 -19152px;
+         }
+         
+         77.0833% {
+             background-position: 0 -19684px;
+         }
+         
+         79.1667% {
+             background-position: 0 -20216px;
+         }
+         
+         81.25% {
+             background-position: 0 -20748px;
+         }
+         
+         83.3333% {
+             background-position: 0 -21280px;
+         }
+         
+         85.4167% {
+             background-position: 0 -21812px;
+         }
+         
+         87.5% {
+             background-position: 0 -22344px;
+         }
+         
+         89.5833% {
+             background-position: 0 -22876px;
+         }
+         
+         91.6667% {
+             background-position: 0 -23408px;
+         }
+         
+         93.75% {
+             background-position: 0 -23940px;
+         }
+         
+         95.8333% {
+             background-position: 0 -24472px;
+         }
+         
+         97.9167% {
+             background-position: 0 -25004px;
+         }
+      }
+   </style>
+</head>
+<body>
+   <div class="collection" style="display:none">
+      <!-- <img src="http://img4.cache.netease.com/f2e/ent/ent_painting2016/images/4.jpg?44" name="3" class="item">
+      <img src="http://img3.cache.netease.com/f2e/ent/ent_painting2016/images/2.jpg?1520" name="1" class="item">
+      <img src="http://img3.cache.netease.com/f2e/ent/ent_painting2016/images/1.jpg?1520" name="0" class="item">
+      <img src="http://img3.cache.netease.com/f2e/ent/ent_painting2016/images/3.jpg?1520" name="2" class="item"> -->
+   </div>
+   <div class="gif">
+      <div class="animation"></div>
+   </div>
+   <canvas id="app"></canvas>
+   <button id="start" style="position:absolute; bottom:0px;width:100px;height:100px;">开始</button>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+   <script type="text/javascript">
+   var imgList = [{
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/cover_v2.jpg",
+         imgW: "750",
+         imgH: "1206"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p1.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "152",
+         areaH: "244",
+         areaL: "370",
+         areaT: "1068",
+         gif: "p1"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p2.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "556",
+         areaH: "894",
+         areaL: "1251",
+         areaT: "1050"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p3.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "166",
+         areaH: "267",
+         areaL: "114",
+         areaT: "897"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p4.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "194",
+         areaH: "312",
+         areaL: "85",
+         areaT: "1402",
+         gif: "p4"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p5.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "102",
+         areaH: "164",
+         areaL: "315",
+         areaT: "2188"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p6.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "280",
+         areaH: "450",
+         areaL: "441",
+         areaT: "467",
+         gif: "p6"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p7.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "79",
+         areaH: "127",
+         areaL: "501",
+         areaT: "2514",
+         gif: "p7"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p8.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "176",
+         areaH: "283",
+         areaL: "1582",
+         areaT: "1084"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p9.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "173",
+         areaH: "278",
+         areaL: "1472",
+         areaT: "1357",
+         gif: "p9"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p10_1.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "179",
+         areaH: "287",
+         areaL: "516",
+         areaT: "1459"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p10.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "769",
+         areaH: "1237",
+         areaL: "558",
+         areaT: "873"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p11.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "112",
+         areaH: "181",
+         areaL: "881",
+         areaT: "1938"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p12.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "328",
+         areaH: "528",
+         areaL: "706",
+         areaT: "314"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p13.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "132",
+         areaH: "213",
+         areaL: "1184",
+         areaT: "908"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p14.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "82",
+         areaH: "132",
+         areaL: "206",
+         areaT: "2092"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p15.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "246",
+         areaH: "396",
+         areaL: "598",
+         areaT: "1270"
+      }, {
+         link: "http://static.ws.126.net/f2e/ent/ent_painting2017/images/p16.jpg",
+         imgW: "1875",
+         imgH: "3015",
+         areaW: "76",
+         areaH: "122",
+         areaL: "462",
+         areaT: "2558"
+      }], radio = 1, index = 0, fps = 40, scale = .985, scaleSlow = .995, timer, t, ctx = document.getElementById('app').getContext("2d"),
+         domList, willPause = true;
+      function init() {
+         this.loadImage();
+         domList = $(".collection .item").sort(function(i, e) {
+            return i.name - e.name
+         });
+         var img = document.getElementById('img');
+         this.initCanvas();
+         bindEvent();
+         ctx.drawImage(domList[0],0,0);
+      }
+      function loadImage() {
+         for(var i = 0; i< this.imgList.length; i++){
+            var image = new Image;
+            image.src=this.imgList[i].link;
+            image.name = i;
+            image.className = 'item';
+            this.imgList[i].image = image;
+            $('.collection').append(image);
+         }
+      }
+      function initCanvas() {
+         var canvas = document.getElementById('app');
+         var w = window.innerWidth, h = window.innerHeight;
+         /*console.log(w)
+         console.log(h)*/
+         w > h && (w = 725, h = 1206, $("body").css({
+            width: "725px",
+            height: "1206px",
+            margin: "0 auto",
+            position: "relative",
+            overflow: "hidden"
+         }), $("html").css({
+            width: "100%",
+            height: "100%"
+         })); 
+         canvas.setAttribute("width", w), canvas.setAttribute("height", h)
+      }
+      function bindEvent(){
+         $("#start").on("touchstart", function() {
+            function e() {
+               var a = (new Date).getTime();
+               if (index + 1 != imgList.length) {
+                  if (a - t < 1e3 / fps) return void(timer = requestAnimationFrame(e));
+                  t = a;
+                  imgList[index + 1].limitMax && imgList[index + 1].limitMin && radio < imgList[index + 1].limitMax && radio > imgList[index + 1].limitMin ? radio = scaleSlow * radio : radio = scale * radio, draw(), timer = requestAnimationFrame(e);
+               }
+            }
+            willPause = false;
+            $(".gif").hide().css("opacity", "0");
+            cancelAnimationFrame(timer);
+            t = (new Date).getTime();
+            timer = requestAnimationFrame(e)
+         })
+         $("#start").on("touchend", function() {
+            if(imgList[index + 1] && imgList[index + 1].gif){
+               willPause = true;
+               $(".gif")[0].className = "gif " + imgList[index + 1].gif;
+               $(".gif").show().css("opacity", "0");
+            }else{
+               willPause = false;
+               cancelAnimationFrame(timer);
+               $(".gif").hide().css("opacity", "0");
+            }
+            
+         })
+      }
+      function draw(){
+         //console.log(radio)
+         console.log(imgList[index + 1].giflink)
+         if(!imgList[index + 1]){
+            return;
+         }
+         if (index + 1 != this.imgList.length) {
+            if (radio < imgList[index + 1].areaW / imgList[index + 1].imgW){
+               if (willPause) {
+                  radio = this.imgList[this.index + 1].areaW / this.imgList[this.index + 1].imgW;cancelAnimationFrame(this.timer);
+                  $(".gif").css("opacity", "1");
+               }else{
+                  index++; 
+                  radio = 1;
+               }
+            }
+            //console.log(index)
+            drawImgOversize(domList[index+1],imgList[index+1].imgW,imgList[index+1].imgH,imgList[index+1].areaW,imgList[index+1].areaH, imgList[index+1].areaL, imgList[index+1].areaT, radio);
+            drawImgMinisize(domList[index], imgList[index].imgW, imgList[index].imgH, imgList[index+1].imgW, imgList[index+1].imgH, imgList[index+1].areaW, imgList[index+1].areaH, imgList[index+1].areaL, imgList[index+1].areaT, radio)
+         }
+      }
+      function drawImgOversize(i, e, t, a, n, m, s, g) {
+         /*drawImage(img,sx,sy,swidth,sheight,x,y,width,height)
+            img:规定要使用的图像；
+            sx:开始剪切的x坐标的位置；
+            sy:开始剪切的y坐标的位置；
+            swidth:被剪切图像的宽度；
+            sheight:呗剪切图像的高度；
+            x:画布上放置图像的x坐标位置；
+            y:画布上放置图像的y坐标位置*/
+         ctx.drawImage(i, m - (a / g - a) * (m / (e - a)), s - (n / g - n) * (s / (t - n)), a / g, n / g, 0, 0, 750, 1206);
+      }
+      function drawImgMinisize(i, e, t, a, n, m, s, g, r, o) {
+         ctx.drawImage(i, 0, 0, e, t, (m / o - m) * (g / (a - m)) * o * 750 / m, (s / o - s) * (r / (n - s)) * o * 1206 / s, 750 * o, 1206 * o);
+      }
+      init();
+   </script>
+</body>
+</html>
